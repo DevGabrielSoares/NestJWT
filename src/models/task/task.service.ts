@@ -30,7 +30,7 @@ export class TaskService {
 
   async update(id: number, updateTaskDto: UpdateTaskDto) {
     await this.tasksRepository.update(id, updateTaskDto).catch(err => {
-      throw new HttpException("Erro ao atualizar tarefa", err.response.statusCode);
+      throw new HttpException("Erro ao atualizar tarefa", err.response);
     });
   }
 
