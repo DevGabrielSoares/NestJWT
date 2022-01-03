@@ -30,13 +30,15 @@ export class TaskService {
 
   async update(id: number, updateTaskDto: UpdateTaskDto) {
     await this.tasksRepository.update(id, updateTaskDto).catch(err => {
-      throw new HttpException("Erro ao atualizar tarefa", err.response);
+      throw new HttpException("Erro ao atualizar dados", err.response.statusCode);
     });
+    return { statusCode: 200, message: 'Dados atualizados com sucesso' };
   }
 
   async remove(id: number) {
     await this.tasksRepository.delete(id).catch(err => {
       throw new HttpException("Erro ao remover tarefa", err.response.statusCode);
-    });;
+    });
+    return { statusCode: 200, message: "Tarefa removida com sucesso!"}
   }
 }

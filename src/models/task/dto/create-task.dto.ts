@@ -1,5 +1,6 @@
 export class CreateTaskDto {
-    name: string;
-    content: string;
-    owner: string;
+    id: number;
+    name?: string;
+    content?: string;
+    owner?: string;
 }
