@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { User } from "../../user/entities/user.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('task')
 export class Task {
@@ -8,6 +9,9 @@ export class Task {
 
     @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
     creationDate: Date;
+    
+    @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+    lastChangedDateTime: Date;
 
     @Column({ type: 'varchar', length: 25, nullable: false })
     name: string;
@@ -15,7 +19,7 @@ export class Task {
     @Column({ type: 'varchar', length: 32, nullable: false })
     content: string;
 
-    @Column({ type: 'varchar', length: 25, nullable: false })
-    owner: string;
+    @ManyToOne(() => User, user => user.tasks)
+    owner: User;
 
 }
