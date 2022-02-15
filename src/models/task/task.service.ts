@@ -16,7 +16,7 @@ export class TaskService {
 
   async create(createTaskDto: CreateTaskDto) {
     return await this.tasksRepository.save(createTaskDto).catch(err => {
-      throw new HttpException('Erro ao cadastrar tarefa', err.response.statusCode);
+      throw new HttpException('Erro ao cadastrar tarefa', err);
     });
   }
 

@@ -6,7 +6,7 @@ import { JwtAuthGuard } from '../../auth/shared/jwt-auth.guard';
 
 @Controller('tasks')
 export class TaskController {
-  constructor(private readonly taskService: TaskService) {}
+  constructor(private taskService: TaskService) {}
 
   @UseGuards(JwtAuthGuard)
   @Post()
